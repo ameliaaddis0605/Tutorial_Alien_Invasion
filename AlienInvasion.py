@@ -25,15 +25,14 @@ class AlienInvasion:
       while self.running:
           for event in pygame.event.git():
               if event.type == pygame.QUIT:
+                  self.running = False
                   pygame.quit()
                   sys.exit()
 
+          self.screen.blit(self.bg, (0,0))
+
           pygame.display.flip()
           self.clock.tick(self.settings.FPS)
-
-if __name__ == '__main__':
-  ai = AlienInvasion()
-  ai.run_game()
 
 if __name__ == '__main__':
   ai = AlienInvasion()
