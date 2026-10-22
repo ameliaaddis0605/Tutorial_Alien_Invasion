@@ -1,8 +1,10 @@
 import pygame
 from typing import TYPE_CHECKING
+from bullet import Bullet
 
 if TYPE_CHECKING:
    from alien_invasion import AlienInvasion
+   
 
 class Arsenal:
     def __init__ (self, game: 'AlienInvasion'):
@@ -12,6 +14,12 @@ class Arsenal:
 
     def update_arsenal(self)
         self.arsenal.update()
+        self._remove_bullets_offscreen()
+        
+    def _remove_bullets_offscreen(self):
+        for bullet in self.arsenal.copy():
+            if bullet.rect.bottom <= 0:
+                self.arsenal.remove(bullet)
 
     def draw(self):
         for bullet in self.arsenal:
